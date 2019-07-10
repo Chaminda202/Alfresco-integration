@@ -1,0 +1,44 @@
+#server:
+#  port: 8580
+spring:
+  application:
+    name: dms-micro-service
+  datasource:
+    url: jdbc:mysql://192.168.99.100:3306/dms_db?createDatabaseIfNotExist=true
+    username: root
+    password: secret
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+    
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show_sql: true
+        format_sql: true
+   
+     
+alfresco:
+  login:
+    username: admin
+    password: admin
+  config:
+    node-type: cm:folder
+    folder-name: dms_location
+    temp-location: D:/ETF_PRO/qr_store_location/
+
+  context-path: http://192.168.99.100:8080
+  endpoint:
+    auth-url: /alfresco/service/api/login?u={0}&pw={1}
+    upload-url: /alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children?alf_ticket={0}
+    create-folder-url: /alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children?alf_ticket={0}
+    retrieve-url: /alfresco/api/-default-/public/alfresco/versions/1/nodes/{0}/content?alf_ticket={1}
+    update-url: /alfresco/api/-default-/public/alfresco/versions/1/nodes/{0}/content?alf_ticket={1}
+    version-history-url: /alfresco/api/-default-/public/alfresco/versions/1/nodes/{0}/versions?alf_ticket={1}
+    version-content-url: /alfresco/api/-default-/public/alfresco/versions/1/nodes/{0}/versions/{1}/content?alf_ticket={2}
